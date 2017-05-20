@@ -4,6 +4,9 @@
     <meta charset="UTF-8"/>
     <title>王者荣耀英雄</title>
     <style>
+        body{
+            min-height:700px;
+        }
         body, ul{
             margin: 0;
             padding: 0;
@@ -16,7 +19,7 @@
             width: 1050px;
             height: 55px;
             line-height: 55px;
-            margin: 0px auto;
+            margin: 400px auto 0;
             background-color: #444;
         }
         nav ul {
@@ -35,6 +38,27 @@
         main{
             width: 1050px;
             margin: 0 auto;
+        }
+        .bg{
+            width:100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .btn{
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            color: #444;
+            font-size: 16px;
+            font-weight: 800;
+            text-align: center;
+            position: absolute;
+            top: 280px;
+            left:600px;
+            background-color: #cd9700;
+            border:1px solid #000;
         }
         main .hero{
             width: 150px;
@@ -70,22 +94,19 @@
     </style>
 </head>
 <body>
+    <img class="bg" th:src ="@{/bg.jpg}"/>
+    <a class="btn" href="#" th:href="@{/hero/add}">点击添加英雄</a>
     <header>
         <nav>
             <ul>
                 <li><a href="#" th:href="@{/}">全部</a></li>
-                <li><a href="#" th:href="@{/hero/坦克}">坦克</a></li>
-                <li><a href="#" th:href="@{/hero/战士}">战士</a></li>
-                <li><a href="#" th:href="@{/hero/刺客}">刺客</a></li>
-                <li><a href="#" th:href="@{/hero/法师}">法师</a></li>
-                <li><a href="#" th:href="@{/hero/射手}">射手</a></li>
-                <li><a href="#" th:href="@{/hero/辅助}">辅助</a></li>
+                <li th:each="category : ${categories}"><a href="#" th:href="@{'/hero/'+${category.name}}" th:text="${category.name}">坦克</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <div class="hero" th:each="hero : ${heros}">
-            <img th:src ="@{'/'+${hero.picture}}"/>
+            <img th:src ="@{'/files/'+${hero.picture}}"/>
             <div class="hero-name">
                 <a href="#" th:text="${hero.name}"></a>
             </div>

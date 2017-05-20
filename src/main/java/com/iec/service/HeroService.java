@@ -1,8 +1,10 @@
 package com.iec.service;
 
+import com.iec.domain.Category;
 import com.iec.domain.Hero;
 
 import java.util.Collection;
+import java.util.Set;
 
 
 /**
@@ -13,5 +15,5 @@ public interface HeroService {
 
     void createHero(Hero hero);
 
-    Collection<Hero> getHerosByCategory(String category);
+    Set<Hero> getCategoryHeros(Category category);
 }

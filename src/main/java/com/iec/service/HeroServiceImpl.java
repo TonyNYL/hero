@@ -1,11 +1,13 @@
 package com.iec.service;
 
+import com.iec.domain.Category;
 import com.iec.domain.Hero;
 import com.iec.repository.HeroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by Tony on 2017/5/18.
@@ -27,7 +29,7 @@ public class HeroServiceImpl implements HeroService {
     }
 
     @Override
-    public Collection<Hero> getHerosByCategory(String category) {
+    public Set<Hero> getCategoryHeros(Category category) {
         return heroRepository.findHeroByCategory(category);
     }
 }

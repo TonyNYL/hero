@@ -7,18 +7,158 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>文件上传</title>
+    <title>王者荣耀英雄</title>
+    <style>
+        body{
+            min-height:700px;
+        }
+        body, ul{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        /*导航栏的样式*/
+        header{
+            width: 1050px;
+            height: 55px;
+            line-height: 55px;
+            margin: 400px auto 0;
+            background-color: #444;
+        }
+        nav ul {
+            width:100%;
+            list-style: none;
+        }
+        nav ul li {
+            width: 150px;
+            float: left;
+            text-align: center;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: #fff;
+        }
+        main{
+            width: 1050px;
+            margin: 0 auto;
+        }
+        .bg{
+            width:100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .btn{
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            color: #444;
+            font-size: 16px;
+            font-weight: 800;
+            text-align: center;
+            position: absolute;
+            top: 280px;
+            left:600px;
+            background-color: #cd9700;
+            border:1px solid #000;
+        }
+        main .hero{
+            width: 150px;
+            height: 200px;
+            margin: 10px 75px 10px 0;
+            position: relative;
+            float: left;
+            box-shadow: 1px 2px 1px #000;
+
+        }
+        main .hero img{
+            width: 150px;
+            height: 200px;
+        }
+        main .hero:nth-child(5n){
+            margin-right: 0;
+        }
+        main .hero-name{
+            position: absolute;
+            bottom: 0;
+            width:150px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #444;
+            opacity: 0.8;
+
+        }
+        main .hero-name a{
+            color: #fff;
+        }
+
+        main form {
+            width: 350px;
+            height: 100px;
+            margin: 30px auto 100px;
+
+        }
+        main form label{
+            display: block;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            font-size: 18px;
+            font-weight: 800;
+        }
+        main form input{
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        main form input[type="submit"]{
+            color: #444;
+            font-weight: 800;
+            text-align: center;
+            background-color: #cd9700;
+            border:1px solid #000;
+            margin-top: 30px;
+        }
+        main form select{
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+    </style>
 </head>
 <body>
-
-<form th:action="@{/hero/add}" method="post" enctype="multipart/form-data" th:object="${hero}">
-    昵称：<input id="name"  name="name" th:filed="*{name}" type="text"/>
-    <br/>
-    类别：<input id="category"  name="category" th:filed="*{category}" type="text"/>
-    <br/>
-    头像：<input id="picture" name="picture" type="file"/>
-    <br/>
-    <button type="submit">确定上传</button>
-</form>
+<img class="bg" th:src ="@{/bg.jpg}"/>
+<a class="btn" href="#" th:href="@{/hero/add}">点击添加英雄</a>
+<header>
+    <nav>
+        <ul>
+            <li><a href="#" th:href="@{/}">全部</a></li>
+            <li th:each="category : ${categories}"><a href="#" th:href="@{'/hero/'+${category.name}}" th:text="${category.name}">坦克</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+        <form th:action="@{/hero/add}" method="post" enctype="multipart/form-data" th:object="${hero}">
+            <label>英雄名：</label>
+            <input name="name" type="text"/>
+            <br/>
+            <label>类别：</label>
+            <select name="category">
+                <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.name}">坦克</option>
+            </select>
+            <br/>
+            <label>图片：</label>
+            <input id="picture" name="picture" type="file"/>
+            <br/>
+            <input type="submit" value="确定上传">
+        </form>
+</main>
 </body>
 </html>

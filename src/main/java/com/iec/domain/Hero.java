@@ -9,13 +9,28 @@ import java.io.Serializable;
 @Entity
 public class Hero implements Serializable{
 
-    public Hero(String name, String category, String picture) {
-        this.name = name;
-        this.category = category;
-        this.picture = picture;
-    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column
+    private String name;
+
+    @Column
+    private String picture;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category")
+    private Category category;
 
     public Hero() {
+    }
+
+    public Hero(String name, String picture, Category category) {
+        this.name = name;
+        this.picture = picture;
+        this.category = category;
     }
 
     public Long getId() {
@@ -42,25 +57,11 @@ public class Hero implements Serializable{
         this.picture = picture;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column
-    private String name;
-
-    @Column
-    private String picture;
-
-    @Column
-    private String category;
-
 }
