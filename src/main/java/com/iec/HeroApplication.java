@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HeroApplication {
 
-	@RequestMapping("/")
-	@ResponseBody
-	String home(){
-		return "欢迎来到王者荣耀！！！";
-	}
+//	@RequestMapping("/")
+//	@ResponseBody
+//	String home(){
+//		return "欢迎来到王者荣耀！！！";
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(HeroApplication.class, args);

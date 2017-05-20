@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>王者荣耀英雄</title>
+    <style>
+        body, ul{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        /*导航栏的样式*/
+        header{
+            width: 1050px;
+            height: 55px;
+            line-height: 55px;
+            margin: 0px auto;
+            background-color: #444;
+        }
+        nav ul {
+            width:100%;
+            list-style: none;
+        }
+        nav ul li {
+            width: 150px;
+            float: left;
+            text-align: center;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: #fff;
+        }
+        main{
+            width: 1050px;
+            margin: 0 auto;
+        }
+        main .hero{
+            width: 150px;
+            height: 200px;
+            margin: 10px 75px 10px 0;
+            position: relative;
+            float: left;
+            box-shadow: 1px 2px 1px #000;
+
+        }
+        main .hero img{
+            width: 150px;
+            height: 200px;
+        }
+        main .hero:nth-child(5n){
+            margin-right: 0;
+        }
+        main .hero-name{
+            position: absolute;
+            bottom: 0;
+            width:150px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #444;
+            opacity: 0.8;
+
+        }
+        main .hero-name a{
+            color: #fff;
+
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" th:href="@{/}">全部</a></li>
+                <li><a href="#" th:href="@{/hero/坦克}">坦克</a></li>
+                <li><a href="#" th:href="@{/hero/战士}">战士</a></li>
+                <li><a href="#" th:href="@{/hero/刺客}">刺客</a></li>
+                <li><a href="#" th:href="@{/hero/法师}">法师</a></li>
+                <li><a href="#" th:href="@{/hero/射手}">射手</a></li>
+                <li><a href="#" th:href="@{/hero/辅助}">辅助</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="hero" th:each="hero : ${heros}">
+            <img th:src ="@{'/'+${hero.picture}}"/>
+            <div class="hero-name">
+                <a href="#" th:text="${hero.name}"></a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

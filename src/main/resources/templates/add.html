@@ -1,0 +1,24 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>文件上传</title>
+</head>
+<body>
+
+<form th:action="@{/hero/add}" method="post" enctype="multipart/form-data" th:object="${hero}">
+    昵称：<input id="name"  name="name" th:filed="*{name}" type="text"/>
+    <br/>
+    类别：<input id="category"  name="category" th:filed="*{category}" type="text"/>
+    <br/>
+    头像：<input id="picture" name="picture" type="file"/>
+    <br/>
+    <button type="submit">确定上传</button>
+</form>
+</body>
+</html>
