@@ -81,7 +81,11 @@ public class FileSystemStorageService implements StorageService {
     @Override
     public void init() {
         try {
-            Files.createDirectory(rootLocation);
+            if(rootLocation == null){
+                Files.createDirectory(rootLocation);
+            }else {
+                System.out.println("文件已存在");
+            }
         } catch (IOException e) {
             throw new StorageException("Could not initialize storage", e);
         }

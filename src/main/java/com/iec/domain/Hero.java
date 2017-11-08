@@ -7,6 +7,7 @@ import java.io.Serializable;
  * Created by Tony on 2017/5/18.
  */
 @Entity
+@Table(name = "HERO")
 public class Hero implements Serializable{
 
 
